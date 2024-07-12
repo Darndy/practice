@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{context.user.name}}</title>
+    <style>
+        div{
+            background-color: rgb(0, 255, 76);
+            border-radius: 15px;
+            padding: 10px;
+            width: 40vw;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>User Data</h1>
+        <div>
+            <p>Username: {{context.user.username}}</p>
+            <p>Name: {{context.user.name}}</p>
+        </div>
+    </center>
+</body>
+</html>
