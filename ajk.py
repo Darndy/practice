@@ -66,8 +66,6 @@ def signup():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
         # Encrypt Password using bcrypt
-        if password != confirm_password:
-            return "password mismatched!!"
         password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
         try:
@@ -88,10 +86,8 @@ def query():
         user = flask_session['username']
     except:
         return redirect('/login')
-    
-    user = session.query(User).filter(User.username==user).first()
 
-    return render_template('index.html', context={'user': user})
+    return render_template('index.html')
 
 @app.route("/<username>")
 def user(username):
