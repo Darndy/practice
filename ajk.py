@@ -66,8 +66,6 @@ def signup():
         password = request.form['password']
         confirm_password = request.form['confirm_password']
         # Encrypt Password using bcrypt
-        if password != confirm_password:
-            return "password mismatched!!"
         password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
         try:
