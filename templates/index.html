@@ -7,10 +7,72 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .posts{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .post{
+            border: 1px solid rgb(161, 161, 161);
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 40vw;
+            background-color: rgb(114, 158, 197);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            width: 60%;
+        }
+        form input, textarea  {
+            width: 30vw;
+            height: 40px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+        
+        }
+    </style>
     <body>
-        <h1>Posts</h1>
+        <center>
+            <h1>Posts</h1>
+            
+            <!-- This is a div for the user -->
+            <p>Welcome, {{context.user.username}}.</p>
+            <p>Fullname {{context.user.name}}</p>
 
-        <p>Welcome, {context.user.username}.</p>
-        <p>Fullname {context.user.name}</p>
+            <!-- Form to create new posts -->
+            <form action="/create-post" method="POST">
+                <h2>Create Post</h2>
+                <input type="text" name="title" placeholder="Title" required>
+                <textarea name="content" placeholder="Content" required></textarea>
+                <input type="submit" value="Create Post">
+            </form>
+
+            <!-- This Div will contain all the posts -->
+            <div class="posts">
+                {% for post in context.posts %}
+                    <div class="post">
+                        <!-- This is a div for a post -->
+                        <h3>{{post.title}}</h3>
+                        <p>{{post.content}}</p>
+                        <small>Author: <b>{{post.author}}</b></small>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </center>
     </body>
+    <center>
+        <p><a href="/logout">Logout</a></p>
+    </center>
 </html>
