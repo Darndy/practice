@@ -86,8 +86,10 @@ def query():
         user = flask_session['username']
     except:
         return redirect('/login')
+    
+    user = session.query(User).filter(User.username==user).first()
 
-    return render_template('index.html')
+    return render_template('index.html', context={'user': user})
 
 @app.route("/<username>")
 def user(username):
